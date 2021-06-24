@@ -1,3 +1,4 @@
+require('dotenv').config()
 const passport = require('passport');
 const createError = require('http-errors');
 const express = require('express');
@@ -21,6 +22,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
+  console.log('ENTROOOOOOO', req.user)
+    res.locals.currentUser = req.user;
     res.locals.path = req.path;
     next();
 });

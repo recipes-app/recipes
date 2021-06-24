@@ -9,6 +9,7 @@ router.get('/logout', auth.logout);
 router.get('/authenticate/google', auth.loginWithGoogle);
 router.get('/authenticate/google/cb', auth.doLoginWithGoogle);
 
-
+router.get('/', (req, res) => {res.render('recipes/list')});
+router.get('/logout', auth.logout);
 
 module.exports = router;
