@@ -2,6 +2,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const User = require("../models/user.model");
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const FacebookStrategy = require("passport-facebook").Strategy
 require("dotenv").config();
 
 passport.serializeUser((user, next) => {
@@ -53,3 +54,17 @@ passport.use(
     }
   )
 );
+
+/* passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: process.env.F_REDIRECT_URI,
+},
+function(accessToken, refreshToken, profile, done) {
+  User.findOrCreate( ...,function(err, user) {
+    if (err) { return done(err); }
+    done(null, user);
+  });
+}
+));
+*/

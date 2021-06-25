@@ -1,0 +1,49 @@
+{{#if recipe.isNew }}
+  <form action="/recipes" method="POST">
+{{else}}
+  <form action="/recipes/{{recipe.id}}/edit" method="POST">
+{{/if}}
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input name="title" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title"
+            placeholder="Recipe Title" value="{{ recipe.title }}">
+        {{#if errors.title}}
+        <div class="invalid-feedback">
+            {{errors.title.message}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="form-group">
+        <label for="image">Add picture of your recipe</label>
+        <input name="image" type="file" class="form-control-file" id="image">
+    </div>
+    <div class="form-group">
+        <label for="ingredients">Ingredients</label>
+        <input name="ingredients" type="text" class="form-control {{#if errors.ingredients}}is-invalid{{/if}}" id="ingredients" placeholder="Recipe ingredients" value="{{ recipe.ingredients }}">
+    {{#if errors.ingredients}}
+      <div class="invalid-feedback">
+        {{errors.ingredients.message}}
+      </div>
+    {{/if}}
+    </div>
+    <div class="form-group">
+        <label for="cookingTime">Cooking time</label>
+        <input name="cookingTime" type="text" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}" id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
+    {{#if errors.cookingTime}}
+      <div class="invalid-feedback">
+        {{errors.cookingTime.message}}
+      </div>
+    {{/if}}
+    </div>
+    <div class="form-group mb-10 mt-10">
+        <label for="directions">Recipe directions</label>
+        <textarea name="directions" class="form-control {{#if errors.directions}}is-invalid{{/if}}" id="directions" rows="5" value="{{ recipe.directions }}"></textarea>
+    {{#if errors.directions}}
+      <div class="invalid-feedback">
+        {{errors.directions.message}}
+      </div>
+    {{/if}}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
