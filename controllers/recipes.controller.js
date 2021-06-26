@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Recipe = require('../models/recipe.model');
 const createError = require('http-errors');
+const ingredients = require('../data/ingredients.json')
 
 module.exports.list = (req, res, next) => {
     Recipe.find()
@@ -15,34 +16,39 @@ module.exports.list = (req, res, next) => {
 };
 
 module.exports.create = (req, res, next) => {
-    res.render('recipes/new');
+    res.render('recipes/new', {
+        ingredients: ingredients,
+    });
 };
 
 module.exports.doCreate = (req, res, next) => {
+
+     let restaurantCategories = req.body.ingredients;
+     if (ingredients && ingredients)
+
     const recipe = new Recipe ({
         title: req.body.title,
         image: req.body.image,
-        ingredients: req.body.ingredients,
+        ingredients: req.body.ingredients,//receipeingredients
         cookingTime: req.body.cookingTime,
         directions: req.body.directions,
         author: req.user.id,
         rating: req.body.rating,
         keyWords: req.body.keyWords,
-
     });
-    recipe
-    .save()
-    .then(() => {
-        res.redirect('/recipes');
-    })
-    .catch((error) => {
-        if(error instanceof mongoose.Error.ValidationError) {
-            res.render('recipes/new', {
-                errors: error.errors,
-                recipe,
-            });
-        } else {
-            next(error);
-        }
-    });
+    console.log(recipe);
+    recipe.save()
+        .then(() => res.redirect('/recipes'))
+        .catch((error) => {
+            console.log(error)
+            if(error instanceof mongoose.Error.ValidationError) {
+                res.render('recipes/new', {
+                    errors: error.errors,
+                    recipe: req.body,
+                    ingredients,
+                });
+            } else {
+                next(error);
+            }
+        });
 };

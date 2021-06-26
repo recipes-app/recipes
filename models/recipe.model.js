@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ingredients = require('../data/ingredients.json');
 
 const recipeSchema = new Schema({
     title:{
@@ -12,7 +13,10 @@ const recipeSchema = new Schema({
         default:"https://lh3.googleusercontent.com/proxy/s5xLWD-UZnfx9E_rSK_Kzd9N8kyfNTioMezzD7Op8Lv9tHkLeBj_V8nf9Ev5FDqBS3ENVznuqBBI4HoAtloaINCRkiAxuXmrLNvEYsTxkGfuN5DKsqZhL7Naz6Nmsbwe",
     },
     ingredients:{
-        type: [String],
+        type: [{
+            type: String,
+            enum: ingredients,
+        }],
         default: [],
     },
     cookingTime:{
@@ -25,9 +29,6 @@ const recipeSchema = new Schema({
     author:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    },
-    rating:{
-        type: String, /*preguntar como se hace*/
     },
     keyWords:{
         type: [String],

@@ -1,7 +1,12 @@
-{{#if recipe.isNew }}
-  <form action="/recipes" method="POST">
-{{else}}
+edit={{edit}}
+recipe={{recipe.ingredients}}
+errors={{errors}}
+
+
+{{#if edit }}
   <form action="/recipes/{{recipe.id}}/edit" method="POST">
+{{else}}
+  <form action="/recipes" method="post">
 {{/if}}
     <div class="form-group">
         <label for="title">Title</label>
@@ -13,11 +18,37 @@
         </div>
         {{/if}}
     </div>
-    <div class="form-group">
+
+    <!--<div class="form-group">
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
-    </div>
-    <div class="form-group">
+    </div> -->
+    <select id="framework" name="ingredients" multiple class="form-control" >
+      {{#each ingredients as |ingredient| }}
+        <option value="{{ingredient}}" {{#selected ingredient=ingredient selectedIngredients=recipe.ingredients}} selected {{/selected}}>{{ingredient}}</option>
+      {{/each}}
+      <option value="{{ingredient}}" {{#if ingredient=ingredient selectedIngredients=recipe.ingredients}} selected {{/selected}}>{{ingredient}}</option>
+      
+    </select>
+  
+
+    <!--
+      {{#each recipe.ingredients as |ingredient| }}
+      
+      {{/each}}
+
+      <option value="Codeigniter">Codeigniter</option>
+      <option value="CakePHP">CakePHP</option>
+      <option value="Laravel">Laravel</option>
+      <option value="YII">YII</option>
+      <option value="Zend">Zend</option>
+      <option value="Symfony">Symfony</option>
+      <option value="Phalcon">Phalcon</option>
+      <option value="Slim">Slim</option>
+
+
+
+      <div class="form-group">
         <label for="ingredients">Ingredients</label>
         <input name="ingredients" type="text" class="form-control {{#if errors.ingredients}}is-invalid{{/if}}" id="ingredients" placeholder="Recipe ingredients" value="{{ recipe.ingredients }}">
     {{#if errors.ingredients}}
@@ -43,7 +74,7 @@
         {{errors.directions.message}}
       </div>
     {{/if}}
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
