@@ -23,7 +23,7 @@ errors={{errors}}
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
     </div> -->
-    <select id="framework" name="ingredients" multiple class="form-control" >
+    <select id="ingredients" name="ingredients" multiple class="form-control">
       {{#each ingredients as |ingredient| }}
         <option value="{{ingredient}}" {{#selected ingredient=ingredient selectedIngredients=recipe.ingredients}} selected {{/selected}}>{{ingredient}}</option>
       {{/each}}

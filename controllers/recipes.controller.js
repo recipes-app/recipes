@@ -23,13 +23,15 @@ module.exports.create = (req, res, next) => {
 
 module.exports.doCreate = (req, res, next) => {
 
-     let restaurantCategories = req.body.ingredients;
-     if (ingredients && ingredients)
+     let recipeIngredients = req.body.ingredients;
+     if (recipeIngredients && !Array.isArray(recipeIngredients)){
+         ingredients = [recipeIngredients]
+     }
 
     const recipe = new Recipe ({
         title: req.body.title,
         image: req.body.image,
-        ingredients: req.body.ingredients,//receipeingredients
+        ingredients: recipeIngredients,
         cookingTime: req.body.cookingTime,
         directions: req.body.directions,
         author: req.user.id,
