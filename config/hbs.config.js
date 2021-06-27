@@ -10,31 +10,13 @@ hbs.registerHelper('recipeHasIngredient', function (options) {
   } else {
     return options.inverse(this);
   }
-})
-  
+});
 
-/* 
-hbs.registerHelper('restaurantHasCategory', function (options) {
-  const { restaurant, category } = options.hash;
-  if (restaurant?.categories.includes(category)) {
+hbs.registerHelper('recipeHasKeyWord', function (options) {
+  const { keyWord, recipe } = options.hash;
+  if (recipe?.keyWords?.includes(keyWord)) {
     return options.fn(this);
   } else {
     return options.inverse(this);
   }
-})
-
-
-
-
-////////////
-hbs.registerHelper('selected', (options) => {
-    const { ingredient, selectedIngredients } = options.hash;
-    if (!selectedIngredients) return false
-    return selectedIngredients.includes(ingredient)
-  })
-
-
-hbs.registerHelper('active', (options) => {
-    const { match, path } = options.hash;
-    return path === match ? 'active' : '';
-  }) */
+});

@@ -20,7 +20,7 @@ router.get('/logout', auth.logout);
 
 router.get('/recipes', recipes.list);
 router.get('/recipes/new', secure.isAuthenticated, recipes.create);
-/*router.get('/recipes/:id', recipes.detail);*/
+router.get('/recipes/:id', recipes.detail);
 router.post('/recipes', secure.isAuthenticated, recipes.doCreate);
 
 
