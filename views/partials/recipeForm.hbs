@@ -23,40 +23,14 @@ errors={{errors}}
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
     </div> -->
+
     <select id="ingredients" name="ingredients" multiple class="form-control">
       {{#each ingredients as |ingredient| }}
-        <option value="{{ingredient}}" {{#selected ingredient=ingredient selectedIngredients=recipe.ingredients}} selected {{/selected}}>{{ingredient}}</option>
+        <option value="{{ingredient}}" {{#recipeHasIngredient ingredient=ingredient recipe=../recipe}} selected {{/recipeHasIngredient}}>{{ingredient}}</option>
       {{/each}}
-      <option value="{{ingredient}}" {{#if ingredient=ingredient selectedIngredients=recipe.ingredients}} selected {{/selected}}>{{ingredient}}</option>
-      
     </select>
-  
+    <!-- preguntar si necesitamos seguridad -->
 
-    <!--
-      {{#each recipe.ingredients as |ingredient| }}
-      
-      {{/each}}
-
-      <option value="Codeigniter">Codeigniter</option>
-      <option value="CakePHP">CakePHP</option>
-      <option value="Laravel">Laravel</option>
-      <option value="YII">YII</option>
-      <option value="Zend">Zend</option>
-      <option value="Symfony">Symfony</option>
-      <option value="Phalcon">Phalcon</option>
-      <option value="Slim">Slim</option>
-
-
-
-      <div class="form-group">
-        <label for="ingredients">Ingredients</label>
-        <input name="ingredients" type="text" class="form-control {{#if errors.ingredients}}is-invalid{{/if}}" id="ingredients" placeholder="Recipe ingredients" value="{{ recipe.ingredients }}">
-    {{#if errors.ingredients}}
-      <div class="invalid-feedback">
-        {{errors.ingredients.message}}
-      </div>
-    {{/if}}
-    </div>
     <div class="form-group">
         <label for="cookingTime">Cooking time</label>
         <input name="cookingTime" type="text" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}" id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
@@ -66,6 +40,27 @@ errors={{errors}}
       </div>
     {{/if}}
     </div>
+
+
+    <div class="input-group">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Time</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">1</a></li>
+    <li><a class="dropdown-item" href="#">2</a></li>
+    <li><a class="dropdown-item" href="#">3</a></li>
+    <li><a class="dropdown-item" href="#">4</a></li>
+  </ul>
+  
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Units of time</button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><a class="dropdown-item" href="#">secs</a></li>
+    <li><a class="dropdown-item" href="#">min</a></li>
+    <li><a class="dropdown-item" href="#">hours</a></li>
+  </ul>
+</div>
+
+
+    <!--
     <div class="form-group mb-10 mt-10">
         <label for="directions">Recipe directions</label>
         <textarea name="directions" class="form-control {{#if errors.directions}}is-invalid{{/if}}" id="directions" rows="5" value="{{ recipe.directions }}"></textarea>

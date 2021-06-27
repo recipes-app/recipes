@@ -25,7 +25,7 @@ module.exports.doCreate = (req, res, next) => {
 
      let recipeIngredients = req.body.ingredients;
      if (recipeIngredients && !Array.isArray(recipeIngredients)){
-         ingredients = [recipeIngredients]
+         recipeIngredients = [recipeIngredients]
      }
 
     const recipe = new Recipe ({
