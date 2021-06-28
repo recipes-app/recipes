@@ -1,14 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Wellcome</a>
+        <a class="navbar-brand" href="/">All recipes</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                <li class="nav-item dropdown">
+                {{#if currentUser }}
+                <!-- & author -->
+                <li class="nav-item"><a class="nav-link" aria-current="page" href="/recipes/new">Add new recipe</a></li>
+                <li class="nav-item"><a class="nav-link" href="#!">My recipes</a></li>
+                {{/if }}
+                {{!-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -19,22 +22,26 @@
                         <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
 
             <ul class="navbar-nav">
                 {{#if currentUser }}
-                    <li class="nav-item">
-                        <a class="nav-link {{active path=path match='/profile'}}" aria-current="page" href="/profile">{{ currentUser.email }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/logout">Logout</a>
-                    </li>
-                    <img src="{{currentUser.photo}}" />
+                <li class="nav-item">
+                    <a class="nav-link {{active path=path match='/profile'}}" aria-current="page" href="/profile">
+                        {{ currentUser.name }}</a>
+                        <!-- en la vista del perfil anadir preferencias del usuario, si quiere ser author, sus recetas guardadas;
+                        cuando hace login el usuario, llevarle al perfil en vez de vista general de recetas
+                         -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/logout">Logout</a>
+                </li>
+                <img src="{{currentUser.photo}}" />
                 {{else}}
-                    <li class="nav-item">
-                        <a class="nav-link {{active path=path match='/login'}}" href="/login">Login</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link {{active path=path match='/login'}}" href="/login">Login</a>
+                </li>
                 {{/if}}
             </ul>
             <!---<form class="d-flex">

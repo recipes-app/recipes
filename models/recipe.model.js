@@ -29,12 +29,12 @@ const recipeSchema = new Schema(
       required: "cooking time is required",
     },
 
-    // servings: {
-    //   type: Number,
-    //   min: [1, "the minimum number of servings is 1"],
-    //   max: [100, "the maximum number of servings is 100"],
-    //   required: [true, "number of servings is required"],
-    // },
+    servings: {
+      type: Number,
+      min: [1, "the minimum number of servings is 1"],
+      max: [100, "the maximum number of servings is 100"],
+      required: [true, "number of servings is required"],
+    },
 
     directions: {
       type: String,

@@ -18,6 +18,7 @@ module.exports.list = (req, res, next) => {
 
 module.exports.detail = (req, res, next) => {
   Recipe.findById(req.params.id)
+    .populate("user")
     .then((recipe) => {
       if (recipe) {
         res.render("recipes/detail", { recipe });
@@ -48,6 +49,7 @@ module.exports.doCreate = (req, res, next) => {
     image: req.body.image,
     ingredients: recipeIngredients,
     cookingTime: req.body.cookingTime,
+    servings: req.body.servings,
     directions: req.body.directions,
     author: req.user.id,
     rating: req.body.rating,
