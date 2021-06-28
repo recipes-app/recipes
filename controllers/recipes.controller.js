@@ -73,3 +73,50 @@ module.exports.doCreate = (req, res, next) => {
       }
     });
 };
+
+module.exports.edit = (req, res, next) => {
+  Recipe.findById(req.params.id, {
+    recipe: req.recipe,
+    ingredients,
+    keyWords,
+  } ) 
+    .then((recipe) => res.render('recipes/edit'))
+    .catch((error) => next(error))
+  
+};
+
+/*module.exports.doEdit = (req, res, next) => {
+  Recipe.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+    image: req.body.image,
+    ingredients: recipeIngredients,
+    cookingTime: req.body.cookingTime,
+    servings: req.body.servings,
+    directions: req.body.directions,
+    rating: req.body.rating,
+    keyWords: keyWords,
+  },{runValidators: true, new: true})    //preguntar 
+  .then((recipe) => res.redirect(`/recipes/${recipe.id}`))
+  .catch((error) => {
+    if(error instanceof mongoose.Error.ValidationError) {
+      res.status(400).render('recipes/edit', {
+        errors: error.errors,
+        recipe: req.body,
+        ingredients,
+        keyWords,
+      });
+    } else {
+      next(error);
+    }
+  });
+};*/
+
+module.exports.delete = (req, res, next) => {
+  console.log(req.params.id)
+  Recipe.findByIdAndDelete(req.params.id)
+  .then((recipe) => {
+    console.log(recipe, 'ha sido eliminado')
+    res.redirect('/recipes')
+  })
+  .catch(error => next(error));
+};

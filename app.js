@@ -23,7 +23,7 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
-    res.locals.path = req.path;
+    res.locals.path = req.path; 
     next();
 });
 

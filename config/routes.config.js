@@ -18,10 +18,14 @@ app.get('/auth/facebook/callback',
 router.get('/', (req, res) => {res.render('recipes/list')});
 router.get('/logout', auth.logout);
 
-router.get('/recipes', recipes.list);
+
 router.get('/recipes/new', secure.isAuthenticated, recipes.create);
 router.get('/recipes/:id', recipes.detail);
 router.post('/recipes', secure.isAuthenticated, recipes.doCreate);
+router.get('/recipes/:id/edit', secure.isAuthenticated, recipes.edit);
+/*router.post('/recipes/:id/edit', secure.isAuthenticated, recipes.doEdit);*/
+router.get('/recipes/:id/delete', secure.isAuthenticated, recipes.delete);
 
+router.get('/recipes', recipes.list);
 
 module.exports = router;

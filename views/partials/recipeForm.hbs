@@ -6,6 +6,7 @@ servings={{recipe.servings}}
 
 {{#if edit }}
 <form action="/recipes/{{recipe.id}}/edit" method="POST">
+  <input type="hidden" name="id" value="{{recipe.id}}"/>
   {{else}}
   <form action="/recipes" method="POST">
     {{/if}}
