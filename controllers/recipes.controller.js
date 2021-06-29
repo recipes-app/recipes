@@ -43,10 +43,9 @@ module.exports.doCreate = (req, res, next) => {
   if (recipeIngredients && !Array.isArray(recipeIngredients)) {
     recipeIngredients = [recipeIngredients];
   }
-
-  const recipe = new Recipe({
+  console.log('REQ.FILE', req.file)
+  let newRecipe = {
     title: req.body.title,
-    image: req.body.image,
     ingredients: recipeIngredients,
     cookingTime: req.body.cookingTime,
     servings: req.body.servings,
@@ -54,11 +53,18 @@ module.exports.doCreate = (req, res, next) => {
     author: req.user.id,
     rating: req.body.rating,
     keyWords: keyWords,
-  });
-  console.log(recipe);
-  recipe
+  }
+
+  if (req.file) {
+    newRecipe.image = req.file.path;
+  }
+
+  new Recipe(newRecipe)
     .save()
-    .then(() => res.redirect("/recipes"))
+    .then((recipe) => {
+       console.log(recipe)
+       res.redirect("/recipes")
+      })
     .catch((error) => {
       console.log(error);
       if (error instanceof mongoose.Error.ValidationError) {
@@ -75,30 +81,28 @@ module.exports.doCreate = (req, res, next) => {
 };
 
 module.exports.edit = (req, res, next) => {
-  Recipe.findById(req.params.id, {
-    recipe: req.recipe,
-    ingredients,
-    keyWords,
-  } ) 
-    .then((recipe) => res.render('recipes/edit'))
-    .catch((error) => next(error))
+  Recipe.findById(req.params.id)
+    .then(recipe => {
+      res.render('recipes/edit', 
+      {
+        recipe: recipe,
+        ingredients,
+        keyWords,
+      })
+    })
+    .catch(err => next(err))
   
 };
 
-/*module.exports.doEdit = (req, res, next) => {
-  Recipe.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    image: req.body.image,
-    ingredients: recipeIngredients,
-    cookingTime: req.body.cookingTime,
-    servings: req.body.servings,
-    directions: req.body.directions,
-    rating: req.body.rating,
-    keyWords: keyWords,
-  },{runValidators: true, new: true})    //preguntar 
+module.exports.doEdit = (req, res, next) => {
+
+  delete req.body.author;
+  
+  Recipe.findByIdAndUpdate(req.params.id, req.body, {runValidators: true, new: true})    //preguntar 
   .then((recipe) => res.redirect(`/recipes/${recipe.id}`))
   .catch((error) => {
     if(error instanceof mongoose.Error.ValidationError) {
+      req.body.id = req.params.id;
       res.status(400).render('recipes/edit', {
         errors: error.errors,
         recipe: req.body,
@@ -109,14 +113,14 @@ module.exports.edit = (req, res, next) => {
       next(error);
     }
   });
-};*/
+};
 
 module.exports.delete = (req, res, next) => {
   console.log(req.params.id)
   Recipe.findByIdAndDelete(req.params.id)
-  .then((recipe) => {
-    console.log(recipe, 'ha sido eliminado')
-    res.redirect('/recipes')
-  })
-  .catch(error => next(error));
+    .then((recipe) => {
+      console.log(recipe, 'ha sido eliminado')
+      res.redirect('/recipes')
+    })
+    .catch(error => next(error));
 };

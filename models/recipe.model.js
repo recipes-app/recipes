@@ -12,8 +12,7 @@ const recipeSchema = new Schema(
     },
     image: {
       type: String,
-      default:
-        "https://www.stjeromebilingual.org/wp-content/uploads/2019/07/empty-plate.jpg",
+      default: "https://www.stjeromebilingual.org/wp-content/uploads/2019/07/empty-plate.jpg",
     },
     ingredients: {
       type: [

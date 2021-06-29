@@ -5,10 +5,10 @@ servings={{recipe.servings}}
 
 
 {{#if edit }}
-<form action="/recipes/{{recipe.id}}/edit" method="POST">
+<form action="/recipes/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="id" value="{{recipe.id}}"/>
   {{else}}
-  <form action="/recipes" method="POST">
+  <form action="/recipes" method="POST" enctype="multipart/form-data">
     {{/if}}
     <div class="form-group">
       <label for="title">Title</label>
@@ -66,10 +66,11 @@ servings={{recipe.servings}}
       {{/if}}
     </div>
    
-    <!--<div class="form-group">
+    <div class="form-group">
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
-    </div> -->
+    </div> 
+
     <div class="form-group">
       <label for="ingredients">Ingredients</label>
       <select id="ingredients" name="ingredients" multiple class="form-control">
