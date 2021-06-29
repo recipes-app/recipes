@@ -97,6 +97,10 @@ module.exports.edit = (req, res, next) => {
 module.exports.doEdit = (req, res, next) => {
 
   delete req.body.author;
+  if (req.file) {
+    console.log(req.file)
+    req.body.image = req.file.path;
+  }
   
   Recipe.findByIdAndUpdate(req.params.id, req.body, {runValidators: true, new: true})    //preguntar 
   .then((recipe) => res.redirect(`/recipes/${recipe.id}`))
