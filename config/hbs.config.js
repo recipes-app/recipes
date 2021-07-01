@@ -20,3 +20,18 @@ hbs.registerHelper('recipeHasKeyWord', function (options) {
     return options.inverse(this);
   }
 });
+
+
+
+
+// hbs.registerHelper("restaurantIsOwnerBy", function (options) {
+//   const { user, restaurant } = options.hash;
+//   if (
+//     user &&
+//     (user.id == restaurant.owner?.id || user.id == restaurant.owner)
+//   ) {
+//     return options.fn(this);
+//   } else {
+//     return options.inverse(this);
+//   }
+// });

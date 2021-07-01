@@ -1,11 +1,11 @@
 <body>
 
     <!-- Header-->
-    <header class="bg-dark py-5">
+    <header class="bg-dark py-5" style="background-image: url('img/image.png')">
         <div class="container px-4 px-lg-5 my-5">
-            <div class="text-center text-white">
-                <h1 class="display-4 fw-bolder">Shop in style</h1>
-                <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+            <div class="text-center" id="header-text">
+                <h1 class="display-4 fw-bolder text-white">Shop in style</h1>
+                <p class="lead fw-normal text-50 mb-0 text-white">With this shop hompeage template</p>
             </div>
         </div>
     </header>
@@ -20,6 +20,8 @@
                     <div class="card h-100">
                         <!-- Sale badge-->
 
+
+
                         <div class="position-absolute actions-card-button p-3" style="top: 0.5rem; right: 0.5rem">
                             <div class="d-flow rounded-pill d-flex w-100 justify-con">
                                 <a href="/recipes/{{recipe.id}}/edit"
@@ -32,35 +34,35 @@
                                 </form>
                             </div>
                         </div>
-
-                        <!-- Product image-->
-                        <div class="card-img-top-wrapper">
-                            <img class="card-img-top" src="{{recipe.image}}" alt="{{recipe.title}} image" />
-                        </div>
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">{{recipe.title}}</h5>
-                                <!-- Product reviews-->
-                                <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                    <div class="bi-star-fill"></div>
-                                </div>
-                                <!-- Product price-->
-                                <p> &#x23F2; <span class="text-muted ">{{recipe.cookingTime}}</span></p>
-
-
+                        <a href="/recipes/{{recipe.id}}" id="recipe-link">
+                            <!-- Product image-->
+                            <div class="recipe-image  m-3" style="background-image: url('{{recipe.image}}')">
                             </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{recipe.title}}</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <p> &#x23F2; <span class="text-muted ">{{recipe.cookingTime}}</span></p>
+
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            {{!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center"><a class="btn btn-outline-dark mt-auto"
                                     href="/recipes/{{recipe.id}}">See recipe</a></div>
-                        </div>
+                        </div> --}}
+                        </a>
                     </div>
 
                 </div>

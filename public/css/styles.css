@@ -11,9 +11,41 @@ nav img {
   max-height: 200px;
 }
 
-/* .card-img-top {
+.home-navbar {
+  text-decoration: none;
+  color: gray;
+}
+
+.image-user-navbar {
+  width: 50px;
+  height: 50px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: 200px;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-radius: 4px;
+}
+
+header {
   background-position: 0 0;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 300px;
+  max-height: 750px;
   position: relative;
-} */
+  display: flex;
+  align-items: center;
+}
+
+#recipe-link {
+  text-decoration: none;
+  color: green;
+}
