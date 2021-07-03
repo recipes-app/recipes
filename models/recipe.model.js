@@ -10,6 +10,9 @@ const recipeSchema = new Schema(
       required: "title is required",
       minLength: [3, "title should have at least 3 letters"],
     },
+    summary: {
+      type: String,
+    },
     image: {
       type: String,
       default: "https://www.stjeromebilingual.org/wp-content/uploads/2019/07/empty-plate.jpg",
@@ -17,14 +20,15 @@ const recipeSchema = new Schema(
     ingredients: {
       type: [
         {
-          type: String,
-          enum: ingredients,
+          name: String,
+          amount: Number,
+          unit: String,
         },
       ],
       default: [],
     },
     cookingTime: {
-      type: String,
+      type: Number,
       required: "cooking time is required",
     },
 
@@ -43,12 +47,7 @@ const recipeSchema = new Schema(
       ref: "User",
     },
     keyWords: {
-      type: [
-        {
-          type: String,
-          enum: keyWords,
-        },
-      ],
+      type: [String],
       default: [],
       required: "at least one key word is required",
     },

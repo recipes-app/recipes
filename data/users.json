@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Elena",
+        "email": "example@ex.com",
+        "author": true,
+        "social": {
+            "google": "100209989595725370058"
+        }
+    }
+]

@@ -39,7 +39,7 @@
 
     <div class="form-group">
       <label for="cookingTime">Cooking time</label>
-      <input name="cookingTime" type="text" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
+      <input name="cookingTime" type="number" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
         id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
       {{#if errors.cookingTime}}
       <div class="invalid-feedback">
@@ -65,8 +65,28 @@
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
     </div> 
+<div id="ingredients">
+  <button class="btn btn-primary" type="button" id="add-ingredient">Add ingredient</button>
+  <div class="ingredient">
+    <div class="form-group">
+      <label >Name</label>
+      <input name="ingredients[0][name]" type="text" class="form-control ingredient-name" placeholder="Recipe Title">
+    </div>
+    
+    <div class="form-group">
+      <label >Amount</label>
+      <input name="ingredients[0][amount]" type="text" class="form-control ingredient-amount" placeholder="Recipe Title">
+    </div>
 
     <div class="form-group">
+      <label >Unit</label>
+      <input name="ingredients[0][unit]" type="text" class="form-control ingredient-unit" placeholder="Recipe Title">
+    </div>
+  </div>
+</div>
+  
+
+    <!-- <div class="form-group">
       <label for="ingredients">Ingredients</label>
       <select id="ingredients" name="ingredients" multiple class="form-control">
         {{#each ingredients as |ingredient| }}
@@ -74,8 +94,8 @@
           {{/recipeHasIngredient}}>{{ingredient}}</option>
         {{/each}}
       </select>
-      <!-- preguntar si necesitamos seguridad -->
-    </div>
+      preguntar si necesitamos seguridad 
+    </div>-->
 
     <div class="form-group">
       <label for="directions">Directions</label>

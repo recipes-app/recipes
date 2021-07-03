@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon -e css,hbs,js app.js"
+    "dev": "nodemon -e css,hbs,js app.js",
+    "seed": "node bin/seed.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/recipes-app/recipes#readme",
   "dependencies": {
+    "axios": "^0.21.1",
     "cloudinary": "^1.26.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
