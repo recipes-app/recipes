@@ -49,3 +49,61 @@ header {
   text-decoration: none;
   color: green;
 }
+
+/* Detail view */
+
+#recipe-card{
+  display: flex;
+  box-sizing: border-box;
+}
+
+.recipe-card-img {
+  max-width: 100%;
+  height: 350px;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipe-card-info  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.core-feature-icons {
+  padding: 0rem 0rem 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#cooking-time,
+#servings{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.l-col-left, .l-col-right {
+  padding: 2rem 0rem;
+  display: inline-block;
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+i {
+  margin-right: 10px;
+}
+
+.l-content {
+  display: flex;
+  align-items: center;
+}
+
+/*------ */
