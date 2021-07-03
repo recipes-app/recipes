@@ -34,7 +34,7 @@ nav img {
   border-radius: 4px;
 }
 
-header {
+header, #img-login {
   background-position: 0 0;
   background-size: cover;
   background-repeat: no-repeat;
@@ -45,11 +45,21 @@ header {
   align-items: center;
 }
 
+#img-login {
+ height: 475px;
+}
+
 #recipe-link {
   text-decoration: none;
   color: green;
 }
+/*Form view */
 
+.container-slider {
+    max-width: 1000px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 /* Detail view */
 
 #recipe-card{

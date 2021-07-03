@@ -1,20 +1,28 @@
-<form action="/login" method="POST">
-    <div class="d-grid gap-2 mt-2">
-        <a href="/authenticate/google" class="btn btn-danger border-0">
-        <i class="fa fa-google"></i>
-        Login with Google
-        </a>
+<div id="img-login" class="bg-dark py-5" style="background-image: url('img/imglogin.jpg')">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center" id="header-text">
+            <h1 class="display-4 fw-bolder text-white">Login now</h1>
+            <p class="lead fw-normal text-50 mb-0 text-white">Explore the world of recipes</p>
+            <form action="/login" method="POST">
+                <div class="d-grid gap-2 col-3 mx-auto mt-5" >
+                    <a href="/authenticate/google" class="btn btn-danger border-0">
+                        <i class="fa fa-google"></i>
+                        Login with Google
+                    </a>
+                </div>
+                <div class="d-grid gap-2 col-3 mx-auto mt-2">
+                    <a href="/auth/facebook" class="btn btn-dark border-0">
+                        <i class="fa fa-slack"></i>
+                        Login with Facebook
+                    </a>
+                </div>
+                <div class="d-grid gap-2 col-3 mx-auto mt-2">
+                    <a href="/authenticate/pinterest" class="btn btn-dark border-0">
+                        <i class="fa fa-slack"></i>
+                        Login with Pinterest
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="d-grid gap-2 mt-2">
-        <a href="/auth/facebook" class="btn btn-dark border-0">
-        <i class="fa fa-slack"></i>
-        Login with Facebook
-        </a>
-    </div>
-    <div class="d-grid gap-2 mt-2">
-        <a href="/authenticate/pinterest" class="btn btn-dark border-0">
-        <i class="fa fa-slack"></i>
-        Login with Pinterest
-        </a>
-    </div>
-</form>
+</div>
