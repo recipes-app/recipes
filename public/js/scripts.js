@@ -31,4 +31,20 @@ $(document).ready(function () {
       ingredients.append(ingredient)
     })
   }
+
+  /*const deleteIngredient = document.querySelector('#delete-ingredient');
+  if (deleteIngredient) {
+    deleteIngredient.addEventListener('click', () => {
+      
+      const ingredients = document.querySelector('#ingredients')
+      const totalIngredients = document.querySelectorAll('#ingredients .ingredient').length;
+      
+      const ingredient = document.querySelector('#ingredients .ingredient').Node.removeChild(true);
+      ingredient.querySelector('.ingredient-name').name = `ingredients[${totalIngredients}][name]`;
+      ingredient.querySelector('.ingredient-amount').name = `ingredients[${totalIngredients}][amount]`;
+      ingredient.querySelector('.ingredient-unit').name = `ingredients[${totalIngredients}][unit]`;
+
+      ingredients.remove(ingredient)
+    })
+  }*/
 });

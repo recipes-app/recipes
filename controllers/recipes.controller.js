@@ -129,3 +129,12 @@ module.exports.delete = (req, res, next) => {
     })
     .catch(error => next(error));
 };
+
+module.exports.search = (req, res, next) => {
+  /*console.log(recipe)*/
+  Recipe.find(req.body)
+  .then((recipes) => {
+    res.render('recipes/search', { recipes});
+  })
+  .catch(error => next(error));
+};

@@ -22,16 +22,14 @@ hbs.registerHelper('recipeHasKeyWord', function (options) {
 });
 
 
-
-
-// hbs.registerHelper("restaurantIsOwnerBy", function (options) {
-//   const { user, restaurant } = options.hash;
-//   if (
-//     user &&
-//     (user.id == restaurant.owner?.id || user.id == restaurant.owner)
-//   ) {
-//     return options.fn(this);
-//   } else {
-//     return options.inverse(this);
-//   }
-// });
+hbs.registerHelper("isRecipeAuthor", function (options) {
+  const { user, recipe } = options.hash;
+  if (
+    user &&
+    (user.id == recipe.author?.id || user.id == recipe.author)
+  ) {
+    return options.fn(this);
+  } else {
+    return options.inverse(this);
+  }
+});

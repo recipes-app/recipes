@@ -1,21 +1,21 @@
 <div class="container-slider mx-auto mt-6">
-{{#if edit }}
-<form action="/recipes/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="id" value="{{recipe.id}}"/>
-  {{else}}
-  <form action="/recipes" method="POST" enctype="multipart/form-data">
-    {{/if}}
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input name="title" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title"
-        placeholder="Recipe Title" value="{{ recipe.title }}">
-      {{#if errors.title}}
-      <div class="invalid-feedback">
-        {{errors.title.message}}
-      </div>
+  {{#if edit }}
+  <form action="/recipes/{{recipe.id}}/edit" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{recipe.id}}" />
+    {{else}}
+    <form action="/recipes" method="POST" enctype="multipart/form-data">
       {{/if}}
-    </div>
-    <!--
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input name="title" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title"
+          placeholder="Recipe Title" value="{{ recipe.title }}">
+        {{#if errors.title}}
+        <div class="invalid-feedback">
+          {{errors.title.message}}
+        </div>
+        {{/if}}
+      </div>
+      <!--
     <div class="input-group">
       <label for="time">Time of cooking</label>
       <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -37,56 +37,88 @@
     </div>
     -->
 
-    <div class="form-group">
-      <label for="cookingTime">Cooking time</label>
-      <input name="cookingTime" type="number" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
-        id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
-      {{#if errors.cookingTime}}
-      <div class="invalid-feedback">
-        {{errors.cookingTime.message}}
+      <div class="form-group">
+        <label for="cookingTime">Cooking time</label>
+        <input name="cookingTime" type="number" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
+          id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
+        {{#if errors.cookingTime}}
+        <div class="invalid-feedback">
+          {{errors.cookingTime.message}}
+        </div>
+        {{/if}}
       </div>
-      {{/if}}
-    </div>
-    <!-- Diferentes tipos del tiempo: prep time, cooking time & total time  -->
-   
-    <div class="form-group">
-      <label for="servings">Servings</label>
-      <input name="servings" type="number"
-        class="form-control {{#if errors.servings}}is-invalid{{/if}}" id="servings" placeholder="Number of servings"
-        value="{{ recipe.servings }}">
-      {{#if errors.servings}}
-      <div class="invalid-feedback">
-        {{errors.servings.message}}
+      <!-- Diferentes tipos del tiempo: prep time, cooking time & total time  -->
+
+      <div class="form-group">
+        <label for="servings">Servings</label>
+        <input name="servings" type="number" class="form-control {{#if errors.servings}}is-invalid{{/if}}" id="servings"
+          placeholder="Number of servings" value="{{ recipe.servings }}">
+        {{#if errors.servings}}
+        <div class="invalid-feedback">
+          {{errors.servings.message}}
+        </div>
+        {{/if}}
       </div>
-      {{/if}}
-    </div>
-   
-    <div class="form-group">
+
+      <div class="form-group">
         <label for="image">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
-    </div> 
-<div id="ingredients">
-  <button class="btn btn-primary" type="button" id="add-ingredient">Add ingredient</button>
-  <div class="ingredient">
-    <div class="form-group">
-      <label >Name</label>
-      <input name="ingredients[0][name]" type="text" class="form-control ingredient-name" placeholder="Recipe Title">
-    </div>
-    
-    <div class="form-group">
-      <label >Amount</label>
-      <input name="ingredients[0][amount]" type="text" class="form-control ingredient-amount" placeholder="Recipe Title">
-    </div>
+      </div>
+      <div id="ingredients">
+        <div class="row mb-3">
+          <label class="col-sm-1 col-form-label">Ingredients</label>
+          <div class="col-sm">
+            <button class="btn btn-primary rounded-circle" type="button" id="add-ingredient">+</button>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <label >Unit</label>
-      <input name="ingredients[0][unit]" type="text" class="form-control ingredient-unit" placeholder="Recipe Title">
-    </div>
+        {{#each ingredients }}
+        <!--Sin terminar-->
+        <div class="ingredient row g-3">
+          <div class="form-group col-sm">
+            <label>Name</label>
+            <input name="{{@index}}: {{this.name}}" type="text" class="form-control ingredient-name"
+              placeholder="Ingredient Name">
+          </div>
+
+          <div class="form-group col-sm">
+            <label>Amount</label>
+            <input name="ingredients[{{@index}}: {{this}}][amount]" type="text" class="form-control ingredient-amount"
+              placeholder="Amount">
+          </div>
+
+          <div class="form-group col-sm">
+            <label>Unit</label>
+            <input name="ingredients[{{@index}}: {{this}}][unit]" type="text" class="form-control ingredient-unit"
+              placeholder="Units">
+          </div>
+
+          <div class="form-group col-sm">
+            <label class="col-sm-1 col-form-label text-white">Delete</label>
+            <div class="col-sm">
+              <button type="button" class="close" id="delete-ingredient" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+
+      </div>
+
+      <!--<div class="row g-3">
+  <div class="col-sm-7">
+    <input type="text" class="form-control" placeholder="City" aria-label="City">
   </div>
-</div>
-  
+  <div class="col-sm">
+    <input type="text" class="form-control" placeholder="State" aria-label="State">
+  </div>
+  <div class="col-sm">
+    <input type="text" class="form-control" placeholder="Zip" aria-label="Zip">
+  </div>
+</div>-->
 
-    <!-- <div class="form-group">
+      <!-- <div class="form-group">
       <label for="ingredients">Ingredients</label>
       <select id="ingredients" name="ingredients" multiple class="form-control">
         {{#each ingredients as |ingredient| }}
@@ -97,29 +129,29 @@
       preguntar si necesitamos seguridad 
     </div>-->
 
-    <div class="form-group">
-      <label for="directions">Directions</label>
-      <textarea name="directions" type="text"
-        class="form-control html-editor {{#if errors.directions}}is-invalid{{/if}}" id="directions"
-        placeholder="Enter recipe directions" rows="10">{{ recipe.directions }}
+      <div class="form-group">
+        <label for="directions">Directions</label>
+        <textarea name="directions" type="text"
+          class="form-control html-editor {{#if errors.directions}}is-invalid{{/if}}" id="directions"
+          placeholder="Enter recipe directions" rows="10">{{ recipe.directions }}
       </textarea>
-      {{#if errors.directions}}
-      <div class="invalid-feedback">{{errors.directions}}</div>
-      {{/if}}
-    </div>
+        {{#if errors.directions}}
+        <div class="invalid-feedback">{{errors.directions}}</div>
+        {{/if}}
+      </div>
 
-    <div class="form-group">
-      <label for="keyWords">Select a few key words your recipe can be found by</label>
-      <select id="keyWords" name="keyWords" multiple class="form-control">
-        {{#each keyWords as |keyWord| }}
-        <option value="{{keyWord}}" {{#recipeHasKeyWord keyWord=keyWord recipe=../recipe}} selected
-          {{/recipeHasKeyWord}}>{{keyWord}}</option>
-        {{/each}}
-      </select>
-      <!-- preguntar si necesitamos seguridad y si podemos hacer un helper universal -->
-    </div>
+      <div class="form-group">
+        <label for="keyWords">Select a few key words your recipe can be found by</label>
+        <select id="keyWords" name="keyWords" multiple class="form-control">
+          {{#each keyWords as |keyWord| }}
+          <option value="{{keyWord}}" {{#recipeHasKeyWord keyWord=keyWord recipe=../recipe}} selected
+            {{/recipeHasKeyWord}}>{{keyWord}}</option>
+          {{/each}}
+        </select>
+        <!-- preguntar si necesitamos seguridad y si podemos hacer un helper universal -->
+      </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
 
-  </form>
-  </div>
+    </form>
+</div>

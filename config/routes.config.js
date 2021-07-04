@@ -4,6 +4,7 @@ const router = express.Router();
 const recipes = require('../controllers/recipes.controller');
 const secure = require('../middlewares/secure.mid');
 const upload = require('../config/multer.config');
+const users = require('../controllers/users.controller');
 
 router.get('/login', auth.login);
 /*router.post('/login', auth.doLogin);
@@ -19,6 +20,8 @@ app.get('/auth/facebook/callback',
 
 router.get('/logout', auth.logout);
 
+router.get('/profile', secure.isAuthenticated, users.createProfile);
+router.post('/profile', secure.isAuthenticated, users.doCreateProfile);
 
 router.get('/recipes/new', secure.isAuthenticated, recipes.create);
 router.get('/recipes/:id', recipes.detail);
@@ -28,6 +31,7 @@ router.post('/recipes/:id/edit', secure.isAuthenticated, upload.single('image'),
 router.post('/recipes/:id/delete', secure.isAuthenticated, recipes.delete);
 
 router.get('/recipes', recipes.list);
+router.get('/recipes/search', recipes.list);
 
 router.get('/', (req, res) => {
   res.redirect('/recipes');
