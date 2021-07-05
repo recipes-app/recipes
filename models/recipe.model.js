@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const ingredients = require("../data/ingredients.json");
-const keyWords = require("../data/keywords.json");
 
 const recipeSchema = new Schema(
   {
@@ -15,7 +13,8 @@ const recipeSchema = new Schema(
     },
     image: {
       type: String,
-      default: "https://www.stjeromebilingual.org/wp-content/uploads/2019/07/empty-plate.jpg",
+      default:
+        "https://www.stjeromebilingual.org/wp-content/uploads/2019/07/empty-plate.jpg",
     },
     ingredients: {
       type: [
@@ -55,5 +54,11 @@ const recipeSchema = new Schema(
   { timestamps: true }
 );
 
+//anadir virtual de valoraciones y calcular media
+
 const Recipe = mongoose.model("Recipe", recipeSchema);
-module.exports = Recipe;
+module.exports.Recipe = Recipe;
+
+module.exports.listKeyWords = () => {
+  return Recipe.distinct("keyWords");
+};

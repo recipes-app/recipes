@@ -72,35 +72,47 @@
           </div>
         </div>
 
-        {{#each ingredients }}
+        {{#each recipe.ingredients as |ingredient|}}
         <!--Sin terminar-->
         <div class="ingredient row g-3">
           <div class="form-group col-sm">
             <label>Name</label>
-            <input name="{{@index}}: {{this.name}}" type="text" class="form-control ingredient-name"
+            <input value="{{ingredient.name}}" name="ingredients[{{@index}}][name]" type="text"
+              class="form-control ingredient-name" placeholder="Ingredient Name">
+          </div>
+
+          <div class="form-group col-sm">
+            <label>Amount</label>
+            <input value="{{ingredient.amount}}" name="ingredients[{{@index}}][amount]" type="text"
+              class="form-control ingredient-amount" placeholder="Amount">
+          </div>
+
+          <div class="form-group col-sm">
+            <label>Unit</label>
+            <input value="{{ingredient.unit}}" name="ingredients[{{@index}}][unit]" type="text"
+              class="form-control ingredient-unit" placeholder="Units">
+          </div>
+
+        </div>
+        {{else}}
+        <div class="ingredient row g-3">
+          <div class="form-group col-sm">
+            <label>Name</label>
+            <input name="ingredients[0][name]" type="text" class="form-control ingredient-name"
               placeholder="Ingredient Name">
           </div>
 
           <div class="form-group col-sm">
             <label>Amount</label>
-            <input name="ingredients[{{@index}}: {{this}}][amount]" type="text" class="form-control ingredient-amount"
+            <input name="ingredients[0][amount]" type="text" class="form-control ingredient-amount"
               placeholder="Amount">
           </div>
 
           <div class="form-group col-sm">
             <label>Unit</label>
-            <input name="ingredients[{{@index}}: {{this}}][unit]" type="text" class="form-control ingredient-unit"
-              placeholder="Units">
+            <input name="ingredients[0][unit]" type="text" class="form-control ingredient-unit" placeholder="Units">
           </div>
 
-          <div class="form-group col-sm">
-            <label class="col-sm-1 col-form-label text-white">Delete</label>
-            <div class="col-sm">
-              <button type="button" class="close" id="delete-ingredient" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
         </div>
         {{/each}}
 
@@ -142,7 +154,7 @@
 
       <div class="form-group">
         <label for="keyWords">Select a few key words your recipe can be found by</label>
-        <select id="keyWords" name="keyWords" multiple class="form-control">
+        <select id="keywords-select" name="keyWords" multiple class="form-control">
           {{#each keyWords as |keyWord| }}
           <option value="{{keyWord}}" {{#recipeHasKeyWord keyWord=keyWord recipe=../recipe}} selected
             {{/recipeHasKeyWord}}>{{keyWord}}</option>

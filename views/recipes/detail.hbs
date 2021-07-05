@@ -1,18 +1,19 @@
 <div class="d-flex justify-content-center ">
   <div id="recipe-card " class="card col-10 mt-3 shadow p-3 mb-5 bg-body rounded">
-    <div class="recipe-card-img card-img-top col-md-4" style="background-image: url('{{recipe.image}}')" class="w-100 rounded border"></div>
+    <div class="recipe-card-img card-img-top col-md-4" style="background-image: url('{{recipe.image}}')"
+      class="w-100 rounded border"></div>
     <div class="recipe-card-info d-flex align-items-center">
       <p class="card-text mt-4">{{recipe.keyWords}}</p>
       <h1 class="card-title">{{recipe.title}}</h1>
       <div>
-        <p class="card-text mt-4"><strong>Author:</strong>{{recipe.author}}</p>
+        <p class="card-text mt-4"><strong>Author:</strong>{{recipe.author.name}}</p>
       </div>
-      
+
     </div>
-  </div> 
+  </div>
 </div>
 
-<div class="core-feature-icons col-10 mt-3 d-flex align-items-center" >
+<div class="core-feature-icons col-10 mt-3 d-flex align-items-center">
   <div id="cooking-time">
     <i class="fa fa-clock-o fa-2x mr-2"></i>
     <label for="cooking-time-text">{{recipe.cookingTime}}</label>
@@ -28,7 +29,9 @@
     <div id="ingredients">
       <h3>Ingredients</h3>
       <ul>
-        <li>{{recipe.ingredients}}</li>
+        {{#each recipe.ingredients as |ingredient|}}
+        <li>{{ingredient.name}} {{ingredient.amount}} {{ingredient.unit}}</li>
+        {{/each}}
       </ul>
     </div>
   </div>

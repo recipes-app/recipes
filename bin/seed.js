@@ -3,7 +3,7 @@ require("dotenv").config();
 require("../config/db.config");
 const axios = require("axios");
 const mongoose = require('mongoose');
-const Recipe = require('../models/recipe.model');
+const { Recipe } = require('../models/recipe.model');
 const User = require('../models/user.model');
 const users = require('../data/users.json')
 
