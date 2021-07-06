@@ -25,8 +25,10 @@ module.exports.list = (req, res, next) => {
 module.exports.detail = (req, res, next) => {
   Recipe.findById(req.params.id)
     .populate("author")
+    .populate("ratings")
     .then((recipe) => {
       if (recipe) {
+        console.log("recipe", recipe)
         res.render("recipes/detail", { recipe });
       } else {
         res.redirect("/recipes");

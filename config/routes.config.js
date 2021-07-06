@@ -5,6 +5,7 @@ const recipes = require('../controllers/recipes.controller');
 const secure = require('../middlewares/secure.mid');
 const upload = require('../config/multer.config');
 const users = require('../controllers/users.controller');
+const ratings = require('../controllers/ratings.controller');
 
 router.get('/login', auth.login);
 /*router.post('/login', auth.doLogin);
@@ -32,6 +33,8 @@ router.post('/recipes/:id/delete', secure.isAuthenticated, recipes.delete);
 
 router.get('/recipes', recipes.list);
 router.get('/recipes/search', recipes.list);
+
+router.post('/recipes/:id/ratings', secure.isAuthenticated, ratings.doCreate);
 
 router.get('/', (req, res) => {
   res.redirect('/recipes');

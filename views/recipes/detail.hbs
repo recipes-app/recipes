@@ -43,9 +43,21 @@
   </div>
 </div>
 
+<div>
+  <form action="/recipes/{{recipe.id}}/ratings" method="POST">
+    <input type="number" max="5" min="1" name="rate"/>
+    <textarea name="review"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</div>
+{{recipe.ratings}}
 
-
-
+<h1>EEE {{average ratings=recipe.ratings index=1}}</h1>
+<h1>EEE {{average ratings=recipe.ratings index=2}}</h1>
+<h1>EEE {{average ratings=recipe.ratings index=3}}</h1>
+<h1>EEE {{average ratings=recipe.ratings index=4}}</h1>
+<h1>EEE {{average ratings=recipe.ratings index=5}}</h1>
+ 
 <!--
 <div class="row">
   <div class="col-3">

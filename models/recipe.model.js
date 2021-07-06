@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Rating = require('../models/rating.model')
 
 const recipeSchema = new Schema(
   {
@@ -53,6 +54,13 @@ const recipeSchema = new Schema(
   },
   { timestamps: true }
 );
+
+recipeSchema.virtual('ratings', {
+  ref: 'Rating',
+  localField: '_id',
+  foreignField: 'recipe',
+  justOne: false,
+});
 
 //anadir virtual de valoraciones y calcular media
 

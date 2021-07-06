@@ -33,3 +33,22 @@ hbs.registerHelper("isRecipeAuthor", function (options) {
     return options.inverse(this);
   }
 });
+
+hbs.registerHelper('average', function (options) { 
+  const { ratings, index } = options.hash
+  if ( (ratings.reduce((a, b) => (a.rate + b.rate)) / ratings.length) >= index) {
+    return '´strella activa'
+  } else {
+    return 'éstrella no activa'
+  }
+})
+
+
+
+
+/*helpers.avg = function() {
+  var args = [].concat.apply([], arguments);
+  // remove handlebars options object
+  args.pop();
+  return helpers.sum(args) / args.length;
+};*/
