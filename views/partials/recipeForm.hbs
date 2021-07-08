@@ -5,8 +5,8 @@
     {{else}}
     <form action="/recipes" method="POST" enctype="multipart/form-data">
       {{/if}}
-      <div class="form-group">
-        <label for="title">Title</label>
+      <div class="form-group mt-3">
+        <label for="title" class="mb-1">Title</label>
         <input name="title" type="text" class="form-control {{#if errors.title}}is-invalid{{/if}}" id="title"
           placeholder="Recipe Title" value="{{ recipe.title }}">
         {{#if errors.title}}
@@ -37,8 +37,8 @@
     </div>
     -->
 
-      <div class="form-group">
-        <label for="cookingTime">Cooking time</label>
+      <div class="form-group mt-3">
+        <label for="cookingTime" class="mb-1" >Cooking time</label>
         <input name="cookingTime" type="number" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
           id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
         {{#if errors.cookingTime}}
@@ -49,8 +49,8 @@
       </div>
       <!-- Diferentes tipos del tiempo: prep time, cooking time & total time  -->
 
-      <div class="form-group">
-        <label for="servings">Servings</label>
+      <div class="form-group mt-3">
+        <label for="servings" class="mb-1">Servings</label>
         <input name="servings" type="number" class="form-control {{#if errors.servings}}is-invalid{{/if}}" id="servings"
           placeholder="Number of servings" value="{{ recipe.servings }}">
         {{#if errors.servings}}
@@ -60,13 +60,13 @@
         {{/if}}
       </div>
 
-      <div class="form-group">
-        <label for="image">Add picture of your recipe</label>
+      <div class="form-group mt-3">
+        <label for="image" class="mb-1">Add picture of your recipe</label>
         <input name="image" type="file" class="form-control-file" id="image">
       </div>
-      <div id="ingredients">
-        <div class="row mb-3">
-          <label class="col-sm-1 col-form-label">Ingredients</label>
+      <div id="ingredients" class="mt-3">
+        <div class="row ">
+          <label class="col-sm-1 col-form-label me-3">Ingredients</label>
           <div class="col-sm">
             <button class="btn btn-primary rounded-circle" type="button" id="add-ingredient">+</button>
           </div>
@@ -74,42 +74,42 @@
 
         {{#each recipe.ingredients as |ingredient|}}
         <!--Sin terminar-->
-        <div class="ingredient row g-3">
+        <div class="ingredient row g-3 mt-1">
           <div class="form-group col-sm">
-            <label>Name</label>
+            <label class="mt-1">Name</label>
             <input value="{{ingredient.name}}" name="ingredients[{{@index}}][name]" type="text"
               class="form-control ingredient-name" placeholder="Ingredient Name">
           </div>
 
           <div class="form-group col-sm">
-            <label>Amount</label>
+            <label class="mt-1">Amount</label>
             <input value="{{ingredient.amount}}" name="ingredients[{{@index}}][amount]" type="text"
               class="form-control ingredient-amount" placeholder="Amount">
           </div>
 
           <div class="form-group col-sm">
-            <label>Unit</label>
+            <label class="mt-1">Unit</label>
             <input value="{{ingredient.unit}}" name="ingredients[{{@index}}][unit]" type="text"
               class="form-control ingredient-unit" placeholder="Units">
           </div>
 
         </div>
         {{else}}
-        <div class="ingredient row g-3">
+        <div class="ingredient row g-3 mt-1">
           <div class="form-group col-sm">
-            <label>Name</label>
+            <label class="mt-1">Name</label>
             <input name="ingredients[0][name]" type="text" class="form-control ingredient-name"
               placeholder="Ingredient Name">
           </div>
 
           <div class="form-group col-sm">
-            <label>Amount</label>
+            <label class="mt-1">Amount</label>
             <input name="ingredients[0][amount]" type="text" class="form-control ingredient-amount"
               placeholder="Amount">
           </div>
 
           <div class="form-group col-sm">
-            <label>Unit</label>
+            <label class="mt-1">Unit</label>
             <input name="ingredients[0][unit]" type="text" class="form-control ingredient-unit" placeholder="Units">
           </div>
 
@@ -141,8 +141,8 @@
       preguntar si necesitamos seguridad 
     </div>-->
 
-      <div class="form-group">
-        <label for="directions">Directions</label>
+      <div class="form-group mt-3">
+        <label for="directions" class="mb-1">Directions</label>
         <textarea name="directions" type="text"
           class="form-control html-editor {{#if errors.directions}}is-invalid{{/if}}" id="directions"
           placeholder="Enter recipe directions" rows="10">{{ recipe.directions }}
@@ -152,8 +152,8 @@
         {{/if}}
       </div>
 
-      <div class="form-group">
-        <label for="keyWords">Select a few key words your recipe can be found by</label>
+      <div class="form-group mt-3">
+        <label for="keyWords" class="mb-1">Select a few key words your recipe can be found by</label>
         <select id="keywords-select" name="keyWords" multiple class="form-control">
           {{#each keyWords as |keyWord| }}
           <option value="{{keyWord}}" {{#recipeHasKeyWord keyWord=keyWord recipe=../recipe}} selected
@@ -163,7 +163,7 @@
         <!-- preguntar si necesitamos seguridad y si podemos hacer un helper universal -->
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
 
     </form>
 </div>

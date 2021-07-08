@@ -4,16 +4,23 @@
     {{>header }}
 
     <!-- Section-->
-    <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
-            <div class="row">
+    <section>
+        <div class="flex-container px-4 px-lg-5 mt-0">
+            <div class="row d-flex justify-content-center mt-100">
                 <div class="col" id="search">
                     <form action="/recipes" method="GET">
-                        <input type="text" name="search" value="{{search}}">
+                        <div class="input-group">
+                            <input class="w-100 shadow-sm bg-body rounded" type="text" name="search" value="{{search}}">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                            
+                        </div>
                     </form>
                 </div>
             </div>
             <div class="row">
+
                 {{#each recipes as |recipe|}}
 
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">

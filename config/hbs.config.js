@@ -34,21 +34,24 @@ hbs.registerHelper("isRecipeAuthor", function (options) {
   }
 });
 
-hbs.registerHelper('average', function (options) { 
-  const { ratings, index } = options.hash
-  if ( (ratings.reduce((a, b) => (a.rate + b.rate)) / ratings.length) >= index) {
-    return '´strella activa'
-  } else {
-    return 'éstrella no activa'
+hbs.registerHelper('average', function (ratings) { 
+  const rating = Math.round(ratings.reduce((acc, el) => acc + el.rate, 0) / ratings.length)
+
+  let stars = ''
+
+  for (let i = 0; i < rating; i++) {
+    stars += '<div class="bi-star-fill"></div>'
   }
+
+  return stars
 })
 
+hbs.registerHelper('stars', function (rating) { 
+  let stars = ''
 
+  for (let i = 0; i < rating.rate; i++) {
+    stars += '<div class="bi-star-fill"></div>'
+  }
 
-
-/*helpers.avg = function() {
-  var args = [].concat.apply([], arguments);
-  // remove handlebars options object
-  args.pop();
-  return helpers.sum(args) / args.length;
-};*/
+  return stars
+})

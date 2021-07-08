@@ -46,7 +46,11 @@ header, #img-login {
 }
 
 #img-login {
- height: 475px;
+ z-index: -1;
+ height: 100vh;
+ position: absolute;
+ width: 100vw;
+ top: 0;
 }
 
 #recipe-link {
@@ -120,11 +124,18 @@ i {
 /* Search-bar */
 
 #search {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  width: 300px;
+  flex-grow: 1;
   height: 42px;
-  margin: 100px auto 0 auto;
+  margin-top: 45px;
+  margin-bottom: 30px;
+  
+}
+#search input {
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.150);
+  display: inline;
+}
+
+#search i {
+  display: inline;
 }
