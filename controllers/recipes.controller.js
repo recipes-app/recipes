@@ -147,3 +147,14 @@ module.exports.search = (req, res, next) => {
     })
     .catch((error) => next(error));
 };
+
+module.exports.listMyRecipe = (req, res, next) => {
+  Recipe.find()
+    .sort({ createdAt: 'desc' })
+    .then((recipes) => {
+      res.render('users/profile', { recipes});
+    })
+    .catch((err) => {
+      next(err);
+    });
+};

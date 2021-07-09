@@ -5,10 +5,17 @@
 
         <div class="recipe-card-img col-lg-6 col-md-6 col-sm-12 " style="background-image: url('{{recipe.image}}')"
           class="w-100 rounded border">
-          <p>aklsdmfklas</p></div>
-        <div class="recipe-card-info d-flex align-items-center col-lg-6 col-md-6 col-sm-12 ">
-          <p class="card-text mt-4">{{recipe.keyWords}}</p>
-          <h1 class="card-title">{{recipe.title}}</h1>
+        </div>
+        <div class="container recipe-card-info d-flex align-items-center col-lg-6 col-md-6 col-sm-12 ">
+          <div>
+            <p class="card-text mt-4">{{recipe.keyWords}}</p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <h1 class="card-title">{{recipe.title}}</h1>
+          </div>
+          <div class="d-flex justify-content-center small text-warning mb-2">
+            {{{ average recipe.ratings }}}
+          </div>
           <div>
             <p class="card-text mt-4"><strong>Author:</strong>{{recipe.author.name}}</p>
           </div>
@@ -18,57 +25,68 @@
     </div>
   </div>
 </div>
-
-<div class="core-feature-icons col-10 mt-3 d-flex align-items-center">
-  <div id="cooking-time">
-    <i class="fa fa-clock-o fa-2x mr-2"></i>
-    <label for="cooking-time-text">{{recipe.cookingTime}}</label>
-  </div>
-  <div id="servings">
-    <i class="fa fa-user fa-2x"></i>
-    <label for="serving-text">{{recipe.servings}}</label>
-  </div>
-</div>
-
-<div class="l-content d-flex align-items-center">
-  <div id="recipe-content-left" class="l-col-left">
-    <div id="ingredients">
-      <h3>Ingredients</h3>
-      <ul>
-        {{#each recipe.ingredients as |ingredient|}}
-        <li>{{ingredient.name}} {{ingredient.amount}} {{ingredient.unit}}</li>
-        {{/each}}
-      </ul>
+<div class="flex-container">
+  <div class="row">
+    <div class="core-feature-icons col-10 mt-3 d-flex align-items-center">
+      <div id="cooking-time">
+        <i class="fa fa-clock-o fa-2x mr-2"></i>
+        <label for="cooking-time-text">{{recipe.cookingTime}}</label>
+      </div>
+      <div id="servings">
+        <i class="fa fa-user fa-2x"></i>
+        <label for="serving-text">{{recipe.servings}}</label>
+      </div>
     </div>
   </div>
-  <div id="recipe-content-right" class="l-col-right">
-    <div id="directions">
-      <h3>Directions</h3>
-      <div id="directions">{{{recipe.directions}}}</div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="col-6">
+      <div id="ingredients">
+        <h3>Ingredients</h3>
+        <ul>
+          {{#each recipe.ingredients as |ingredient|}}
+          <li>{{ingredient.name}} {{ingredient.amount}} {{ingredient.unit}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <div id="directions">
+        <h3>Directions</h3>
+         <div id="directions">{{{recipe.directions}}}</div>
+      </div>
     </div>
   </div>
 </div>
 
 <div>
   <form action="/recipes/{{recipe.id}}/ratings" method="POST">
-    <input type="number" max="5" min="1" name="rate" />
-    <textarea name="review"></textarea>
-    <button type="submit">Send</button>
+  <div class="row">
+    <label class="col-sm-1 col-form-label me-3">Rate this recipe</label>
+  </div>
+  <div class="d-flex flex-column" id="recipe-rating">
+    
+    <div class="col-sm">
+      <label>Rate from 1 to 5</label>
+      <input type="number" max="5" min="1" name="rate"/></div>
+    <div class="col-sm">
+      <label>Add a comment</label>
+      <textarea name="review"></textarea></div>
+    <div class="col-sm"><button type="submit">Send</button></div>
+  </div>
   </form>
 </div>
-{{recipe.ratings}}
 
 
-<div class="d-flex justify-content-center small text-warning mb-2">
-  {{{ average recipe.ratings }}}
-</div>
+
+
 
 <div class="row row-cols-1 row-cols-md-2 g-4">
   {{#each recipe.ratings as |rating|}}
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{{stars rating}}}</h5>
+        <h5 class="card-title d-flex  small text-warning mb-2">{{{stars rating}}}</h5>
         <p class="card-text">{{ rating.review }}</p>
       </div>
     </div>

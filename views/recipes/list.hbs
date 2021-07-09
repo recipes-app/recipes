@@ -10,7 +10,7 @@
                 <div class="col" id="search">
                     <form action="/recipes" method="GET">
                         <div class="input-group">
-                            <input class="w-100 shadow-sm bg-body rounded" type="text" name="search" value="{{search}}">
+                            <input class="w-75 shadow-sm bg-body rounded" type="text" name="search" value="{{search}}">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
@@ -26,8 +26,6 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-5">
 
                     <div class="card h-100">
-                        <!-- Sale badge-->
-
 
                         {{#isRecipeAuthor user=../currentUser recipe=recipe }}
                         <div class="position-absolute actions-card-button p-3" style="top: 0.5rem; right: 0.5rem">
@@ -45,15 +43,15 @@
                         {{/isRecipeAuthor}}
 
                         <a href="/recipes/{{recipe.id}}" id="recipe-link">
-                            <!-- Product image-->
+                           
                             <div class="recipe-image  m-3" style="background-image: url('{{recipe.image}}')">
                             </div>
-                            <!-- Product details-->
+                            
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
+                                    
                                     <h5 class="fw-bolder">{{recipe.title}}</h5>
-                                    <!-- Product reviews-->
+                                    
                                     <div class="d-flex justify-content-center small text-warning mb-2">
                                         <div class="bi-star-fill"></div>
                                         <div class="bi-star-fill"></div>
@@ -61,17 +59,12 @@
                                         <div class="bi-star-fill"></div>
                                         <div class="bi-star-fill"></div>
                                     </div>
-                                    <!-- Product price-->
+    
                                     <p> &#x23F2; <span class="text-muted ">{{recipe.cookingTime}}</span></p>
 
 
                                 </div>
                             </div>
-                            <!-- Product actions-->
-                            {{!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                                        href="/recipes/{{recipe.id}}">See recipe</a></div>
-                            </div> --}}
                         </a>
                     </div>
 

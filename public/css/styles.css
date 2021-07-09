@@ -139,3 +139,20 @@ i {
 #search i {
   display: inline;
 }
+
+#upload-image {
+  display: block;
+}
+
+#search .input-group {
+  width: 100vw;
+}
+
+#ingredients ul {
+  list-style: none;
+  margin-left: -15px;
+}
+
+#recipe-rating label {
+  display: block;
+}
