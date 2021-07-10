@@ -11,7 +11,7 @@
             <p class="card-text mt-4">{{recipe.keyWords}}</p>
           </div>
           <div class="d-flex justify-content-center">
-            <h1 class="card-title">{{recipe.title}}</h1>
+            <h1 class="card-title title-color">{{recipe.title}}</h1>
           </div>
           <div class="d-flex justify-content-center small text-warning mb-2">
             {{{ average recipe.ratings }}}
@@ -25,7 +25,7 @@
     </div>
   </div>
 </div>
-<div class="flex-container">
+<div class="container">
   <div class="row">
     <div class="core-feature-icons col-10 mt-3 d-flex align-items-center">
       <div id="cooking-time">
@@ -53,59 +53,72 @@
     <div class="col-6">
       <div id="directions">
         <h3>Directions</h3>
-         <div id="directions">{{{recipe.directions}}}</div>
+        <div id="directions">{{{recipe.directions}}}</div>
       </div>
     </div>
   </div>
-</div>
 
-<div>
-  <form action="/recipes/{{recipe.id}}/ratings" method="POST">
+  {{#isRecipeAuthor user=currentUser recipe=recipe}}
+
+  {{else}}
+  <div>
+    <form action="/recipes/{{recipe.id}}/ratings" method="POST">
+      <div class="row">
+        <hr class="divider">
+        <label>
+          <h3>Rate this recipe</h3>
+        </label>
+      </div>
+
+      <div class="d-flex flex-column" id="recipe-rating">
+        <div class="col-12 justify-content-center">
+          <div class="input-group mb-3">
+            <select name="rate" class="form-select" id="inputGroupSelect01">
+              <option selected>Rate from 1 to 5</option>
+              <option value="1" type="number">One</option>
+              <option value="2" type="number">Two</option>
+              <option value="3" type="number">Three</option>
+              <option value="4" type="number">Four</option>
+              <option value="5" type="number">Five</option>
+            </select>
+          </div>
+          <div class="col-8 form-floating">
+            <textarea class="form-control" name="review" placeholder="Leave a comment here" id="floatingTextarea2"
+              style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Add a comment</label>
+            <div class="col-sm">
+              <button type="submit" class="btn btn-success mt-3">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  {{/isRecipeAuthor}}
+
   <div class="row">
-    <label class="col-sm-1 col-form-label me-3">Rate this recipe</label>
-  </div>
-  <div class="d-flex flex-column" id="recipe-rating">
-    
-    <div class="col-sm">
-      <label>Rate from 1 to 5</label>
-      <input type="number" max="5" min="1" name="rate"/></div>
-    <div class="col-sm">
-      <label>Add a comment</label>
-      <textarea name="review"></textarea></div>
-    <div class="col-sm"><button type="submit">Send</button></div>
-  </div>
-  </form>
-</div>
+    <hr class="divider">
+    <div>
+      <h3>Comments</h3>
+    </div>
 
-
-
-
-
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  {{#each recipe.ratings as |rating|}}
-  <div class="col">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title d-flex  small text-warning mb-2">{{{stars rating}}}</h5>
-        <p class="card-text">{{ rating.review }}</p>
+    {{#each recipe.ratings as |rating|}}
+    <div class="col-12 d-flex justify-content-center">
+      <div class="card col-8 mt-3">
+        <div class="card-body">
+          <h5 class="card-title d-flex  small text-warning mb-2">{{{stars rating}}}</h5>
+          <p class="card-text">{{ rating.review }}</p>
+        </div>
       </div>
     </div>
+    {{/each}}
+
+    {{#unless recipe.ratings}}
+    <p>No comments yet</p>
+    {{/unless}}
   </div>
-  {{/each}}
+
 </div>
 
-<!--
-<div class="row">
-  <div class="col-3">
-    <h1>{{recipe.title}}</h1>
-    <img src="{{recipe.image}}" class="w-100 rounded border" />
-
-  </div>
-
-  <div class="col-9">
-    <small>{{recipe.keyWords}}</small>
-    {{{recipe.directions}}}
-  </div>
-</div> -->
 
 <!-- aqui pueden ir recetas similares-->

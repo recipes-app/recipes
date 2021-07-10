@@ -55,3 +55,4 @@ hbs.registerHelper('stars', function (rating) {
 
   return stars
 })
+

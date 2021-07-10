@@ -34,7 +34,8 @@ nav img {
   border-radius: 4px;
 }
 
-header, #img-login {
+header,
+#img-login {
   background-position: 0 0;
   background-size: cover;
   background-repeat: no-repeat;
@@ -46,27 +47,27 @@ header, #img-login {
 }
 
 #img-login {
- z-index: -1;
- height: 100vh;
- position: absolute;
- width: 100vw;
- top: 0;
+  z-index: -1;
+  height: 100vh;
+  position: absolute;
+  width: 100vw;
+  top: 0;
 }
 
 #recipe-link {
   text-decoration: none;
-  color: green;
+  color: #157347;
 }
 /*Form view */
 
 .container-slider {
-    max-width: 1000px;
-    padding-left: 15px;
-    padding-right: 15px;
+  max-width: 1000px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 /* Detail view */
 
-#recipe-card{
+#recipe-card {
   display: flex;
   box-sizing: border-box;
 }
@@ -82,7 +83,7 @@ header, #img-login {
   align-items: center;
 }
 
-.recipe-card-info  {
+.recipe-card-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,14 +97,14 @@ header, #img-login {
 }
 
 #cooking-time,
-#servings{
+#servings {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-
-.l-col-left, .l-col-right {
+.l-col-left,
+.l-col-right {
   padding: 2rem 0rem;
   display: inline-block;
   width: 100%;
@@ -120,19 +121,15 @@ i {
   align-items: center;
 }
 
-/*------ */
-/* Search-bar */
-
 #search {
   flex-grow: 1;
   height: 42px;
   margin-top: 45px;
   margin-bottom: 30px;
-  
 }
 #search input {
   border-radius: 0.25rem;
-  border: 1px solid rgba(0, 0, 0, 0.150);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   display: inline;
 }
 
@@ -145,7 +142,11 @@ i {
 }
 
 #search .input-group {
-  width: 100vw;
+  width: 100%;
+}
+
+#search input {
+  flex-grow: 1;
 }
 
 #ingredients ul {
@@ -155,4 +156,26 @@ i {
 
 #recipe-rating label {
   display: block;
+}
+
+.title-color {
+  color: #157347;
+}
+
+.choices__list--multiple .choices__item {
+  background-color: #157347 !important;
+  border: 1px solid #11603b !important;
+}
+
+.is-flipped .choices__list--dropdown {
+  bottom: 0 !important;
+}
+
+.divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+footer {
+  border-top: 1px solid #11603b63 !important;
 }

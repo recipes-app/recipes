@@ -38,7 +38,7 @@
     -->
 
       <div class="form-group mt-3">
-        <label for="cookingTime" class="mb-1" >Cooking time</label>
+        <label for="cookingTime" class="mb-1">Cooking time</label>
         <input name="cookingTime" type="number" class="form-control {{#if errors.cookingTime}}is-invalid{{/if}}"
           id="cookingTime" placeholder="Cooking Time" value="{{ recipe.cookingTime }}">
         {{#if errors.cookingTime}}
@@ -68,7 +68,7 @@
         <div class="row ">
           <label class="col-sm-1 col-form-label me-3">Ingredients</label>
           <div class="col-sm">
-            <button class="btn btn-primary rounded-circle" type="button" id="add-ingredient">+</button>
+            <button class="btn btn-success rounded-circle" type="button" id="add-ingredient">+</button>
           </div>
         </div>
 
@@ -163,7 +163,7 @@
         <!-- preguntar si necesitamos seguridad y si podemos hacer un helper universal -->
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+      <button type="submit" class="btn btn-success mt-3 mb-5">Submit</button>
 
     </form>
 </div>

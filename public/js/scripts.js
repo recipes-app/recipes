@@ -26,18 +26,18 @@ $(document).ready(function () {
       const ingredient = document
         .querySelector("#ingredients .ingredient")
         .cloneNode(true);
-        
+
       const name = ingredient.querySelector(".ingredient-name");
       name.name = `ingredients[${totalIngredients}][name]`;
-      name.value = '';
+      name.value = "";
 
       const amount = ingredient.querySelector(".ingredient-amount");
       amount.name = `ingredients[${totalIngredients}][amount]`;
-      amount.value = '';
+      amount.value = "";
 
       const unit = ingredient.querySelector(".ingredient-unit");
       unit.name = `ingredients[${totalIngredients}][unit]`;
-      unit.value = '';
+      unit.value = "";
 
       ingredients.append(ingredient);
     });

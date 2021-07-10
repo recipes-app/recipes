@@ -6,14 +6,12 @@ module.exports.list = (req, res, next) => {
   const { search } = req.query;
   const criterial = {};
   if (search) {
-    criterial.$or = [
-      { title: new RegExp(search, "i") }, 
-      { keyWords: search }
-    ];
+    criterial.$or = [{ title: new RegExp(search, "i") }, { keyWords: search }];
   }
   Recipe.find(criterial)
-    .sort({ createdAt: "desc" }) /*ordenar tb x valoracion*/
-    .limit(8)
+    .sort({ createdAt: "desc" })
+    .populate("ratings") /*ordenar tb x valoracion*/
+    .limit(24)
     .then((recipes) => {
       res.render("recipes/list", { recipes, search });
     })
@@ -28,7 +26,6 @@ module.exports.detail = (req, res, next) => {
     .populate("ratings")
     .then((recipe) => {
       if (recipe) {
-        console.log("recipe", recipe)
         res.render("recipes/detail", { recipe });
       } else {
         res.redirect("/recipes");
@@ -93,11 +90,14 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.edit = (req, res, next) => {
   Recipe.findById(req.params.id)
     .then((recipe) => {
-      res.render("recipes/edit", {
-        recipe: recipe,
-        ingredients,
-        keyWords,
-      });
+      listKeyWords()
+        .then((keyWords) => {
+          res.render("recipes/edit", {
+            recipe: recipe,
+            keyWords,
+          });
+        })
+        .catch((error) => next(error));
     })
     .catch((err) => next(err));
 };
@@ -133,14 +133,12 @@ module.exports.delete = (req, res, next) => {
   console.log(req.params.id);
   Recipe.findByIdAndDelete(req.params.id)
     .then((recipe) => {
-      console.log(recipe, "ha sido eliminado");
       res.redirect("/recipes");
     })
     .catch((error) => next(error));
 };
 
 module.exports.search = (req, res, next) => {
-  /*console.log(recipe)*/
   Recipe.find(req.body)
     .then((recipes) => {
       res.render("recipes/search", { recipes });
@@ -149,10 +147,11 @@ module.exports.search = (req, res, next) => {
 };
 
 module.exports.listMyRecipe = (req, res, next) => {
-  Recipe.find()
-    .sort({ createdAt: 'desc' })
+  Recipe.find({ author: req.user.id })
+    .populate("ratings")
+    .sort({ createdAt: "desc" })
     .then((recipes) => {
-      res.render('users/profile', { recipes});
+      res.render("users/profile", { recipes });
     })
     .catch((err) => {
       next(err);
