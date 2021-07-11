@@ -107,6 +107,7 @@
       <div class="card col-8 mt-3">
         <div class="card-body">
           <h5 class="card-title d-flex  small text-warning mb-2">{{{stars rating}}}</h5>
+          <p>{{ rating.user.name }}</p>
           <p class="card-text">{{ rating.review }}</p>
         </div>
       </div>
@@ -119,6 +120,6 @@
   </div>
 
 </div>
-
+{{>footer}}
 
 <!-- aqui pueden ir recetas similares-->

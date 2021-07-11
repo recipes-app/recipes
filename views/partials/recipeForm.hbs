@@ -15,27 +15,6 @@
         </div>
         {{/if}}
       </div>
-      <!--
-    <div class="input-group">
-      <label for="time">Time of cooking</label>
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">Time</button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">1</a></li>
-        <li><a class="dropdown-item" href="#">2</a></li>
-        <li><a class="dropdown-item" href="#">3</a></li>
-        <li><a class="dropdown-item" href="#">4</a></li>
-      </ul>
-
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-        aria-expanded="false">Units of time</button>
-      <ul class="dropdown-menu dropdown-menu-end">
-        <li><a class="dropdown-item" href="#">secs</a></li>
-        <li><a class="dropdown-item" href="#">min</a></li>
-        <li><a class="dropdown-item" href="#">hours</a></li>
-      </ul>
-    </div>
-    -->
 
       <div class="form-group mt-3">
         <label for="cookingTime" class="mb-1">Cooking time</label>
@@ -47,7 +26,6 @@
         </div>
         {{/if}}
       </div>
-      <!-- Diferentes tipos del tiempo: prep time, cooking time & total time  -->
 
       <div class="form-group mt-3">
         <label for="servings" class="mb-1">Servings</label>
@@ -73,7 +51,7 @@
         </div>
 
         {{#each recipe.ingredients as |ingredient|}}
-        <!--Sin terminar-->
+       
         <div class="ingredient row g-3 mt-1">
           <div class="form-group col-sm">
             <label class="mt-1">Name</label>
@@ -118,29 +96,6 @@
 
       </div>
 
-      <!--<div class="row g-3">
-  <div class="col-sm-7">
-    <input type="text" class="form-control" placeholder="City" aria-label="City">
-  </div>
-  <div class="col-sm">
-    <input type="text" class="form-control" placeholder="State" aria-label="State">
-  </div>
-  <div class="col-sm">
-    <input type="text" class="form-control" placeholder="Zip" aria-label="Zip">
-  </div>
-</div>-->
-
-      <!-- <div class="form-group">
-      <label for="ingredients">Ingredients</label>
-      <select id="ingredients" name="ingredients" multiple class="form-control">
-        {{#each ingredients as |ingredient| }}
-        <option value="{{ingredient}}" {{#recipeHasIngredient ingredient=ingredient recipe=../recipe}} selected
-          {{/recipeHasIngredient}}>{{ingredient}}</option>
-        {{/each}}
-      </select>
-      preguntar si necesitamos seguridad 
-    </div>-->
-
       <div class="form-group mt-3">
         <label for="directions" class="mb-1">Directions</label>
         <textarea name="directions" type="text"
@@ -160,10 +115,11 @@
             {{/recipeHasKeyWord}}>{{keyWord}}</option>
           {{/each}}
         </select>
-        <!-- preguntar si necesitamos seguridad y si podemos hacer un helper universal -->
       </div>
 
       <button type="submit" class="btn btn-success mt-3 mb-5">Submit</button>
 
     </form>
 </div>
+
+{{>footer}}

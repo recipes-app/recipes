@@ -179,3 +179,8 @@ i {
 footer {
   border-top: 1px solid #11603b63 !important;
 }
+
+.rounded-circle {
+  border-radius: 50% !important;
+  width: 40px;
+}

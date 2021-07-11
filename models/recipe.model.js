@@ -9,9 +9,6 @@ const recipeSchema = new Schema(
       required: "title is required",
       minLength: [3, "title should have at least 3 letters"],
     },
-    summary: {
-      type: String,
-    },
     image: {
       type: String,
       default:
@@ -41,6 +38,8 @@ const recipeSchema = new Schema(
 
     directions: {
       type: String,
+      minLength: [100, "directions should have at least 100 letters"],
+      required: "you have to put recipe directions"
     },
     author: {
       type: mongoose.Schema.Types.ObjectId,
