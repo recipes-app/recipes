@@ -12,6 +12,7 @@ module.exports.create = (req, res, next) => {
 };
 
 module.exports.doCreate = (req, res, next) => {
+  console.log(req.body)
   Rating.create({
       user: req.user.id,
       recipe: req.params.id,
@@ -21,7 +22,15 @@ module.exports.doCreate = (req, res, next) => {
     .then(() => {
       res.redirect(`/recipes/${req.params.id}`);
     })
-    .catch(next);
+    .catch((err) => {
+      console.log(err.errors.rate)
+      Recipe.findById(req.params.id)
+      .populate("author")
+      .populate("ratings")
+      .then((recipe) => {
+          res.render("recipes/detail", { recipe });
+      })      
+    });
 };
 
 module.exports.list = (req, res, next) => {

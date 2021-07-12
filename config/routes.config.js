@@ -36,7 +36,7 @@ router.get("/recipes", recipes.list);
 router.get("/recipes/search", recipes.list);
 
 router.post("/recipes/:id/ratings", secure.isAuthenticated, ratings.doCreate);
-router.get("/recipes/:id", ratings.list);
+
 
 router.get("/", (req, res) => {
   res.redirect("/recipes");

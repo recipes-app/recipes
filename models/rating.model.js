@@ -15,7 +15,7 @@ const ratingSchema = new Schema(
         },
         rate: {
             type: Number,
-            min: 1,
+            min: [1, 'min value must be 1'],
             max: 5,
         },
         review: {
