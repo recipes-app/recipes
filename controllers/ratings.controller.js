@@ -22,14 +22,24 @@ module.exports.doCreate = (req, res, next) => {
     .then(() => {
       res.redirect(`/recipes/${req.params.id}`);
     })
-    .catch((err) => {
-      console.log(err.errors.rate)
-      Recipe.findById(req.params.id)
-      .populate("author")
-      .populate("ratings")
-      .then((recipe) => {
-          res.render("recipes/detail", { recipe });
-      })      
+    .catch((error) => {
+
+      if (error instanceof mongoose.Error.ValidationError) {
+        console.log(error.errors.rate)
+        Recipe.findById(req.params.id)
+        .populate("author")
+        .populate("ratings")
+        .then((recipe) => {
+            res.render("recipes/detail", { 
+              recipe,
+              errors: error.errors,
+              rating: req.body,
+            });
+        })
+        .catch((error) => next(error));      
+      } else {
+        next(error);
+      }
     });
 };
 

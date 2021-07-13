@@ -66,11 +66,9 @@ module.exports.doCreate = (req, res, next) => {
   new Recipe(newRecipe)
     .save()
     .then((recipe) => {
-      console.log(recipe);
       res.redirect("/recipes");
     })
     .catch((error) => {
-      console.log(error);
       if (error instanceof mongoose.Error.ValidationError) {
         listKeyWords()
           .then((keyWords) => {

@@ -20,7 +20,8 @@ const ratingSchema = new Schema(
         },
         review: {
             type: String,
-            maxLength: [250, 'maximun length of review is up to 250 characters']
+            maxLength: [250, 'maximun length of review is up to 250 characters'],
+            required: "explain your rating"
         }
     },
     { timestamps: true }

@@ -61,6 +61,7 @@
   {{#isRecipeAuthor user=currentUser recipe=recipe}}
 
   {{else}}
+  {{#if currentUser }}
   <div>
     <form action="/recipes/{{recipe.id}}/ratings" method="POST">
       <div class="row">
@@ -69,10 +70,10 @@
           <h3>Rate this recipe</h3>
         </label>
       </div>
-
+      
       <div class="d-flex flex-column" id="recipe-rating">
         <div class="col-12 justify-content-center">
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 {{#if errors.rate}}is-invalid{{/if}}">
             <select name="rate" class="form-select" id="inputGroupSelect01">
               <option selected value="0">Rate from 1 to 5</option>
               <option value="1" type="number">One</option>
@@ -81,11 +82,23 @@
               <option value="4" type="number">Four</option>
               <option value="5" type="number">Five</option>
             </select>
+            {{#if errors.rate}}
+            <div class="invalid-feedback">
+              {{errors.rate.message}}
+            </div>
+            {{/if}}
           </div>
+
           <div class="col-8 form-floating">
-            <textarea class="form-control" name="review" placeholder="Leave a comment here" id="floatingTextarea2"
+            <textarea class="form-control {{#if errors.review}}is-invalid{{/if}}" name="review" placeholder="Leave a comment here" id="floatingTextarea2"
               style="height: 100px"></textarea>
             <label for="floatingTextarea2">Add a comment</label>
+            {{#if errors.review}}
+            <div class="invalid-feedback">
+              {{errors.review.message}}
+            </div>
+            {{/if}}
+
             <div class="col-sm">
               <button type="submit" class="btn btn-success mt-3">Send</button>
             </div>
@@ -94,6 +107,7 @@
       </div>
     </form>
   </div>
+  {{/if}}
   {{/isRecipeAuthor}}
 
   <div class="row">
